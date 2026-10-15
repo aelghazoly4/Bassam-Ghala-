@@ -309,6 +309,20 @@ img{display:block;width:100%;height:100%;-webkit-user-drag:none}
     }, 400);
   });
 
+  // pause when the guest leaves the browser (home screen, another app, lock screen, other tab);
+  // resume with a soft fade when they come back — only if it was playing before
+  let resumeOnShow = false;
+  function leave() {
+    if (!music.paused) { resumeOnShow = true; music.pause(); audioBtn.classList.add('muted'); }
+  }
+  function back() {
+    if (resumeOnShow && document.visibilityState === 'visible') { resumeOnShow = false; setAudio(true); }
+  }
+  document.addEventListener('visibilitychange', () => (document.hidden ? leave() : back()));
+  addEventListener('pagehide', leave);
+  addEventListener('pageshow', back);
+  audioBtn.addEventListener('click', () => { resumeOnShow = false; });
+
   /* ---------- intro: open the doors ---------- */
   const intro = $('#intro');
   let opened = false;
