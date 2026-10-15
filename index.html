@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#efe6dc">
+<title>بسام و غلا | دعوة زفاف</title>
+<meta name="description" content="تتشرف تغريد الصيرفي بدعوتكم لحضور حفل زفاف ابنها — الثلاثاء 10 نوفمبر 2026 · قصر بصمات للاحتفالات، الرياض">
+
+<!-- link preview (WhatsApp, Telegram, iMessage, Facebook, X) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="دعوة زفاف">
+<meta property="og:url" content="https://aelghazoly4.github.io/Bassam-Ghala-/">
+<meta property="og:title" content="بسام و غلا 🤍 دعوة زفاف">
+<meta property="og:description" content="تتشرف تغريد الصيرفي بدعوتكم لحضور حفل زفاف ابنها — الثلاثاء 10 نوفمبر 2026 · قصر بصمات للاحتفالات">
+<meta property="og:image" content="https://aelghazoly4.github.io/Bassam-Ghala-/assets/og-image.jpg">
+<meta property="og:image:secure_url" content="https://aelghazoly4.github.io/Bassam-Ghala-/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="دعوة زفاف بسام و غلا — الثلاثاء 10 نوفمبر 2026">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="بسام و غلا 🤍 دعوة زفاف">
+<meta name="twitter:description" content="الثلاثاء 10 نوفمبر 2026 · قصر بصمات للاحتفالات">
+<meta name="twitter:image" content="https://aelghazoly4.github.io/Bassam-Ghala-/assets/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/inv/bg.webp">
+<link rel="preload" as="image" href="assets/inv/doors.webp">
+<style>
+:root{
+  /* phone column: exactly 9:16 on wide screens, full width on phones */
+  --sw: min(100vw, calc(100dvh * 0.5628));
+  --u: calc(var(--sw) / 366);          /* UI chrome unit */
+  --k: 1;                              /* canvas scale, set by JS */
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+body{background:#e8dfd4;font-family:'Amiri',serif;color:#59391d;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
+img{display:block;width:100%;height:100%;-webkit-user-drag:none}
+.backdrop{position:fixed;inset:-40px;background:url(assets/inv/bg.webp) center/cover;filter:blur(30px) saturate(.9);opacity:.7}
+
+.stage{position:fixed;top:0;bottom:0;left:50%;width:var(--sw);transform:translateX(-50%);overflow:hidden;background:#efe6dc;touch-action:none;box-shadow:0 0 60px rgba(90,60,30,.18)}
+
+/* ===== canvas in PDF points (705.75 × 1254), scaled to cover the stage ===== */
+.cv{position:absolute;left:50%;top:50%;width:705.75px;height:1254px;transform:translate(-50%,-50%) scale(var(--k));transform-origin:50% 50%}
+.bg{position:absolute;inset:0;background:url(assets/inv/bg.webp) center/100% 100% no-repeat;transform:scale(1.32);transition:transform 3.4s cubic-bezier(.2,.75,.25,1)}
+.stage.opening .bg,.stage.opened .bg{transform:scale(1)}
+
+/* ===== intro: pearl double doors opening in 3D ===== */
+.intro{position:absolute;inset:0;z-index:30;transition:opacity .8s ease}
+.intro.done{opacity:0;pointer-events:none}
+.dcv{position:absolute;left:50%;top:50%;width:705.75px;height:1254px;
+  transform:translate(-50%,-50%) scale(calc(var(--k) * var(--push,1)));
+  perspective:1150px;perspective-origin:50% 49%}
+.intro.swing .dcv{--push:1.24;transition:transform 2.7s cubic-bezier(.55,.05,.3,1)}
+.room{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .9s ease;
+  background:radial-gradient(ellipse 60% 55% at 50% 48%,rgba(255,250,240,.0),rgba(70,48,26,.28))}
+.intro.swing .room{opacity:1}
+.intro.gone .room{opacity:0;transition-duration:1.2s}
+.door{position:absolute;top:0;height:100%;width:352.875px;transform-style:preserve-3d;
+  transition:transform 2.15s cubic-bezier(.62,.02,.32,1)}
+.door.dl{left:0;transform-origin:0 50%}
+.door.dr{right:0;transform-origin:100% 50%}
+.intro.swing .door.dl{transform:rotateY(-86deg)}   /* outward: the meeting edges swing toward the viewer */
+.intro.swing .door.dr{transform:rotateY(86deg)}
+.door .face{position:absolute;inset:0;background:url(assets/inv/doors.webp) no-repeat;background-size:705.75px 1254px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dl .face{background-position:0 0}
+.dr .face{background-position:-352.875px 0}
+.door .shade{position:absolute;inset:0;opacity:0;transition:opacity 2.15s cubic-bezier(.62,.02,.32,1);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.dl .shade{background:linear-gradient(90deg,rgba(255,252,245,.10),rgba(90,62,35,.30))}
+.dr .shade{background:linear-gradient(270deg,rgba(60,40,22,.30),rgba(60,40,22,.62))}
+.intro.swing .door .shade{opacity:1}
+/* door thickness on the meeting edges */
+.door .edge{position:absolute;top:0;height:100%;width:13px;
+  background:linear-gradient(90deg,#cdbda5,#ece2d3 40%,#dfd2bf 70%,#bfac90);
+  box-shadow:inset 0 0 0 1px rgba(150,120,85,.25)}
+.dl .edge{left:352.875px;transform-origin:0 50%;transform:rotateY(90deg)}
+.dr .edge{left:-13px;transform-origin:100% 50%;transform:rotateY(-90deg)}
+/* light leaking through the seam right before the doors part */
+.seam{position:absolute;left:50%;top:0;bottom:0;width:140px;margin-left:-70px;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(255,246,226,.35) 44%,rgba(255,252,242,.85) 50%,rgba(255,246,226,.35) 56%,transparent);
+  -webkit-mask:linear-gradient(transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(transparent,#000 18%,#000 82%,transparent);
+  filter:blur(5px);transform:scaleX(.25);transition:opacity .5s ease,transform .6s ease;mix-blend-mode:screen}
+.intro.opening .seam{opacity:.75;transform:scaleX(.45)}
+.intro.swing .seam{opacity:0;transform:scaleX(1.8);transition:opacity .8s ease .1s,transform 1s ease}
+/* idle shimmer across the pearls */
+.sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;transition:opacity .4s ease}
+.sheen::before{content:"";position:absolute;top:-20%;bottom:-20%;width:38%;left:-60%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28) 45%,rgba(255,255,255,.42) 50%,rgba(255,255,255,.28) 55%,transparent);
+  transform:skewX(-12deg);mix-blend-mode:soft-light;animation:sweep 5.5s ease-in-out 1.2s infinite}
+@keyframes sweep{0%{left:-60%}55%,100%{left:125%}}
+.medal-glow{position:absolute;left:50%;top:48.8%;width:300px;height:330px;margin:-165px 0 0 -150px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(255,250,238,.55),transparent 62%);mix-blend-mode:soft-light;
+  animation:glow 3.2s ease-in-out infinite}
+@keyframes glow{50%{opacity:.35;transform:scale(.94)}}
+.intro.opening .sheen,.intro.opening .medal-glow{opacity:0;animation:none}
+.open-wrap{position:absolute;left:0;right:0;bottom:calc(84 * var(--u));display:flex;flex-direction:column;align-items:center;gap:calc(14 * var(--u));transition:opacity .5s ease,transform .5s ease}
+.intro.opening .open-wrap{opacity:0;transform:translateY(calc(10 * var(--u)));pointer-events:none}
+.open-line{display:flex;align-items:center;width:calc(92 * var(--u))}
+.open-line::before,.open-line::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#c9b08f)}
+.open-line::after{background:linear-gradient(270deg,transparent,#c9b08f)}
+.open-line i{width:calc(9 * var(--u));height:calc(9 * var(--u));border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 25%,#f4ede4 50%,#d9cbb8 100%);box-shadow:0 1px 2px rgba(110,85,60,.35)}
+.open-btn{width:calc(205 * var(--u));height:calc(38 * var(--u));border-radius:999px;border:1px solid rgba(214,200,182,.9);background:linear-gradient(#fffdf9,#f7f1e8);box-shadow:0 calc(4 * var(--u)) calc(14 * var(--u)) rgba(120,95,70,.18),inset 0 1px 0 #fff;font-family:'Amiri',serif;font-size:calc(13.5 * var(--u));color:#4d3a28;cursor:pointer;animation:breathe 2.6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.03)}}
+
+/* ===== chrome ===== */
+.scroll-hint{position:absolute;z-index:20;left:50%;bottom:calc(18 * var(--u));width:calc(126 * var(--u));height:calc(40 * var(--u));transform:translateX(-50%);border-radius:999px;border:1px solid #e3d6c6;background:rgba(255,252,247,.9);box-shadow:0 calc(3 * var(--u)) calc(12 * var(--u)) rgba(120,90,60,.12);display:flex;align-items:center;justify-content:center;gap:calc(7 * var(--u));font-family:'Amiri',serif;font-size:calc(12 * var(--u));color:#59391d;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s ease}
+.scroll-hint .arr{font-family:system-ui,sans-serif;font-size:calc(13 * var(--u));display:inline-block;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(calc(3 * var(--u)))}}
+.stage.show-hint .scroll-hint{opacity:1;pointer-events:auto}
+.audio-btn{position:absolute;z-index:40;right:calc(17 * var(--u));bottom:calc(18 * var(--u));width:calc(40 * var(--u));height:calc(40 * var(--u));border-radius:50%;border:1px solid #ece2d5;background:rgba(255,255,255,.92);box-shadow:0 calc(3 * var(--u)) calc(12 * var(--u)) rgba(120,90,60,.15);display:grid;place-items:center;cursor:pointer;color:#59391d}
+.audio-btn svg{width:calc(15 * var(--u));height:calc(15 * var(--u))}
+.audio-btn:not(.muted)::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid #cdb596;animation:ring 2.4s ease-out infinite}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.35);opacity:0}}
+
+/* ===== sections ===== */
+.sec{position:absolute;inset:0;visibility:hidden;pointer-events:none}
+.sec.active{visibility:visible;pointer-events:auto}
+.sec.leave-up,.sec.leave-down{visibility:visible;transition:transform .55s cubic-bezier(.55,.06,.68,.19),opacity .5s ease,filter .5s ease}
+.sec.leave-up{transform:translateY(-200px);opacity:0;filter:blur(3px)}
+.sec.leave-down{transform:translateY(200px);opacity:0;filter:blur(3px)}
+.el{position:absolute;display:block}
+
+.rv{opacity:0;filter:blur(12px);transform:translateY(22px) scale(.985)}
+.rv.l{transform:translateX(-70px)}
+.rv.r{transform:translateX(70px)}
+.rv.z{transform:scale(.93)}
+.rv.f{transform:none}
+.rv.dv{transform:none;filter:none;clip-path:inset(0 50% 0 50%)}
+.sec.from-up .rv:not(.l):not(.r):not(.z):not(.f):not(.dv){transform:translateY(-22px) scale(.985)}
+.sec.in .rv{opacity:1;filter:blur(0);transform:none;clip-path:inset(0 0 0 0);
+  transition:opacity 1.1s var(--ease),filter 1.1s var(--ease),transform 1.2s var(--ease),clip-path 1.3s var(--ease);
+  transition-delay:calc(var(--d,0) * 150ms + 120ms)}
+.map-link{cursor:pointer}
+
+/* ===== live countdown in the invitation's own style (pearl frames, brown Naskh) ===== */
+.clock{position:absolute;left:0;top:0;width:705.75px;height:720px;pointer-events:none}
+.cu{position:absolute;top:586px;width:106px;text-align:center}
+.cu .fr{position:relative;width:106px;height:84px;display:grid;place-items:center}
+.cu .fr img{position:absolute;inset:0;filter:drop-shadow(0 3px 6px rgba(110,80,45,.16))}
+.cu .num{position:relative;height:40px;width:90px;overflow:hidden;margin-top:-2px}
+.cu .num b{position:absolute;left:0;right:0;top:0;font-family:'Amiri',serif;font-weight:700;font-size:33px;line-height:40px;color:#59391d;direction:ltr}
+.cu .num b.out{animation:numOut .3s ease-in forwards}
+.cu .num b.in{animation:numIn .45s .18s var(--ease) both}
+@keyframes numOut{to{transform:translateY(-60%);opacity:0;filter:blur(3px)}}
+@keyframes numIn{from{transform:translateY(60%);opacity:0;filter:blur(3px)}}
+.cu .lab{margin-top:5px;font-family:'Amiri',serif;font-size:17.5px;line-height:20px;color:#94714f}
+.csep{position:absolute;top:623px;width:8px;height:8px;color:#b89a73}
+
+@media (prefers-reduced-motion: reduce){.rv{filter:none}.sec.in .rv{transition-duration:.4s}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<main class="stage" id="stage">
+  <div class="cv" id="cv">
+    <div class="bg" aria-hidden="true"></div>
+    <section class="sec" data-i="0">
+      <div class="el rv dv" style="left:209.67px;top:374.0px;width:286.33px;height:39.67px;--d:0"><img src="assets/inv/p1-1.webp" alt="خط فاصل" draggable="false"></div>
+      <div class="el rv l" style="left:229.0px;top:454.33px;width:230.33px;height:199.0px;--d:1"><img src="assets/inv/p1-2.webp" alt="بسام" draggable="false"></div>
+      <div class="el rv f" style="left:320.67px;top:684.33px;width:52.0px;height:71.33px;--d:2.6"><img src="assets/inv/p1-3.webp" alt="و" draggable="false"></div>
+      <div class="el rv r" style="left:257.67px;top:803.0px;width:187.67px;height:179.67px;--d:1"><img src="assets/inv/p1-4.webp" alt="غلا" draggable="false"></div>
+      <div class="el rv dv" style="left:209.67px;top:1012.0px;width:286.33px;height:17.67px;--d:3.4"><img src="assets/inv/p1-5.webp" alt="خط فاصل" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="1">
+      <div class="el rv dv" style="left:209.67px;top:504.0px;width:286.33px;height:17.33px;--d:0"><img src="assets/inv/p2-1.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:152.33px;top:589.0px;width:400.33px;height:95.33px;--d:1"><img src="assets/inv/p2-2.webp" alt="توالت علينا الليالي الملاح" draggable="false"></div>
+      <div class="el rv " style="left:200.33px;top:703.67px;width:304.67px;height:44.67px;--d:2"><img src="assets/inv/p2-3.webp" alt="حلت علينا مناسبة سعيدة" draggable="false"></div>
+      <div class="el rv " style="left:200.0px;top:754.67px;width:305.67px;height:53.67px;--d:3"><img src="assets/inv/p2-4.webp" alt="فحق علينا أن ندعوكم لها" draggable="false"></div>
+      <div class="el rv dv" style="left:209.67px;top:873.0px;width:286.33px;height:17.33px;--d:4"><img src="assets/inv/p2-5.webp" alt="" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="2">
+      <div class="el rv dv" style="left:209.67px;top:451.67px;width:286.33px;height:17.67px;--d:0"><img src="assets/inv/p3-1.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:185.33px;top:511.0px;width:335.0px;height:63.33px;--d:1"><img src="assets/inv/p3-2.webp" alt="في العمر أيام يزينها السرور" draggable="false"></div>
+      <div class="el rv " style="left:188.33px;top:589.33px;width:329.0px;height:46.0px;--d:2"><img src="assets/inv/p3-3.webp" alt="وسرور هذا اليوم مختلف" draggable="false"></div>
+      <div class="el rv " style="left:141.33px;top:715.0px;width:423.33px;height:60.0px;--d:3.2"><img src="assets/inv/p3-4.webp" alt="الله يهني عريسنا بأحلى لياليه" draggable="false"></div>
+      <div class="el rv " style="left:143.33px;top:826.67px;width:419.33px;height:66.0px;--d:4.2"><img src="assets/inv/p3-5.webp" alt="بقلب أم مبتهج ومشاعر مليئة بالحب" draggable="false"></div>
+      <div class="el rv dv" style="left:209.67px;top:934.67px;width:286.33px;height:17.67px;--d:5.2"><img src="assets/inv/p3-6.webp" alt="" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="3">
+      <div class="el rv " style="left:168.33px;top:380.67px;width:369.67px;height:60.67px;--d:0"><img src="assets/inv/p4-1.webp" alt="بارك الله لهما وبارك عليهما وجمع بينهما في خير" draggable="false"></div>
+      <div class="el rv " style="left:274.67px;top:478.33px;width:156.67px;height:23.67px;--d:1"><img src="assets/inv/p4-2.webp" alt="تتشرف" draggable="false"></div>
+      <div class="el rv " style="left:241.67px;top:526.67px;width:222.33px;height:75.67px;--d:2"><img src="assets/inv/p4-3.webp" alt="تغريد الصيرفي" draggable="false"></div>
+      <div class="el rv " style="left:170.67px;top:624.33px;width:364.0px;height:28.0px;--d:3"><img src="assets/inv/p4-4.webp" alt="بدعوتكم لحضور حفل زفاف ابنها" draggable="false"></div>
+      <div class="el rv dv" style="left:209.67px;top:662.67px;width:286.33px;height:17.33px;--d:4"><img src="assets/inv/p4-5.webp" alt="" draggable="false"></div>
+      <div class="el rv l" style="left:167.67px;top:705.33px;width:128.67px;height:177.33px;--d:5"><img src="assets/inv/p4-6.webp" alt="غلا السالم" draggable="false"></div>
+      <div class="el rv f" style="left:330.33px;top:740.67px;width:38.67px;height:52.0px;--d:6"><img src="assets/inv/p4-7.webp" alt="و" draggable="false"></div>
+      <div class="el rv r" style="left:393.67px;top:691.33px;width:173.33px;height:183.0px;--d:5"><img src="assets/inv/p4-8.webp" alt="بسام آل طالب" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="4">
+      <div class="el rv " style="left:314.33px;top:233.0px;width:77.0px;height:50.33px;--d:0"><img src="assets/inv/p5-1.webp" alt="التاريخ" draggable="false"></div>
+      <div class="el rv z" style="left:187.67px;top:315.33px;width:328.33px;height:508.0px;--d:0.6"><img src="assets/inv/p5-2.webp" alt="10 نوفمبر 2026" draggable="false"></div>
+      <div class="el rv " style="left:361.0px;top:812.67px;width:162.67px;height:127.33px;--d:2.2"><img src="assets/inv/p5-3.webp" alt="الثلاثاء" draggable="false"></div>
+      <div class="el rv " style="left:179.33px;top:812.67px;width:162.67px;height:127.33px;--d:3"><img src="assets/inv/p5-4.webp" alt="7:30 م" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="5">
+      <div class="el rv z" style="left:149.0px;top:353.33px;width:380.67px;height:148.33px;--d:0"><img src="assets/inv/p6-1.webp" alt="برنامج الحفل" draggable="false"></div>
+      <div class="el rv " style="left:191.0px;top:550.33px;width:66.0px;height:32.0px;--d:1"><img src="assets/inv/p6-2.webp" alt="7:30 م" draggable="false"></div>
+      <div class="el rv f" style="left:321.0px;top:543.33px;width:36.0px;height:35.67px;--d:1"><img src="assets/inv/p6-3.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:404.33px;top:541.33px;width:97.0px;height:35.0px;--d:1"><img src="assets/inv/p6-4.webp" alt="الاستقبال" draggable="false"></div>
+      <div class="el rv " style="left:203.67px;top:631.67px;width:40.67px;height:32.0px;--d:2"><img src="assets/inv/p6-5.webp" alt="10 م" draggable="false"></div>
+      <div class="el rv f" style="left:321.0px;top:628.67px;width:36.0px;height:36.0px;--d:2"><img src="assets/inv/p6-6.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:401.67px;top:625.33px;width:102.0px;height:40.33px;--d:2"><img src="assets/inv/p6-7.webp" alt="الزفة الأولى" draggable="false"></div>
+      <div class="el rv " style="left:203.67px;top:719.0px;width:40.67px;height:32.0px;--d:3"><img src="assets/inv/p6-8.webp" alt="11 م" draggable="false"></div>
+      <div class="el rv f" style="left:321.0px;top:714.33px;width:36.0px;height:36.0px;--d:3"><img src="assets/inv/p6-9.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:424.0px;top:714.0px;width:70.0px;height:30.0px;--d:3"><img src="assets/inv/p6-10.webp" alt="العشاء" draggable="false"></div>
+      <div class="el rv " style="left:194.67px;top:800.0px;width:64.0px;height:30.33px;--d:4"><img src="assets/inv/p6-11.webp" alt="12 ص" draggable="false"></div>
+      <div class="el rv f" style="left:320.67px;top:800.0px;width:36.67px;height:35.67px;--d:4"><img src="assets/inv/p6-12.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:403.67px;top:796.33px;width:100.67px;height:35.33px;--d:4"><img src="assets/inv/p6-13.webp" alt="الزفة الثانية" draggable="false"></div>
+      <div class="el rv dv" style="left:196.0px;top:873.0px;width:286.0px;height:17.67px;--d:5"><img src="assets/inv/p6-14.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:275.0px;top:907.33px;width:127.67px;height:45.0px;--d:6"><img src="assets/inv/p6-15.webp" alt="ممنوع الجوالات" draggable="false"></div>
+      <div class="el rv f" style="left:448.33px;top:911.0px;width:45.67px;height:45.67px;--d:6"><img src="assets/inv/p6-16.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:239.0px;top:984.0px;width:255.0px;height:50.33px;--d:7"><img src="assets/inv/p6-17.webp" alt="ممنوع اصطحاب الأطفال" draggable="false"></div>
+    </section>
+    <section class="sec" data-i="6">
+      <a class="el rv z map-link" href="#" data-map style="left:184.0px;top:338.33px;width:337.67px;height:469.33px;--d:0" aria-label="خريطة قصر بصمات للاحتفالات"><img src="assets/inv/p7-1.webp" alt="خريطة قصر بصمات للاحتفالات" draggable="false"></a>
+      <a class="el rv  map-link" href="#" data-map style="left:222.33px;top:840.67px;width:264.67px;height:63.67px;--d:1.2" aria-label="الإتجاهات"><img src="assets/inv/p7-2.webp" alt="الإتجاهات" draggable="false"></a>
+    </section>
+    <section class="sec" data-i="7">
+      <div class="el rv " style="left:250.67px;top:461.0px;width:204.0px;height:58.33px;--d:0"><img src="assets/inv/p8-1.webp" alt="حتى لقائنا" draggable="false"></div>
+      <div class="el rv dv" style="left:209.67px;top:536.67px;width:286.33px;height:17.33px;--d:1"><img src="assets/inv/p8-2.webp" alt="" draggable="false"></div>
+      <div class="clock rv" style="--d:2" aria-label="العد التنازلي">
+        <div class="cu" data-unit="d" style="left:475.25px"><div class="fr"><img src="assets/inv/frame-mini.webp" alt=""><div class="num"></div></div><div class="lab">يوم</div></div><svg class="csep" style="left:465.5px" viewBox="0 0 12 12"><path fill="currentColor" d="M6 .5 7.1 4.9 11.5 6 7.1 7.1 6 11.5 4.9 7.1.5 6 4.9 4.9Z"/></svg><div class="cu" data-unit="h" style="left:357.75px"><div class="fr"><img src="assets/inv/frame-mini.webp" alt=""><div class="num"></div></div><div class="lab">ساعة</div></div><svg class="csep" style="left:348.0px" viewBox="0 0 12 12"><path fill="currentColor" d="M6 .5 7.1 4.9 11.5 6 7.1 7.1 6 11.5 4.9 7.1.5 6 4.9 4.9Z"/></svg><div class="cu" data-unit="m" style="left:240.25px"><div class="fr"><img src="assets/inv/frame-mini.webp" alt=""><div class="num"></div></div><div class="lab">دقيقة</div></div><svg class="csep" style="left:230.5px" viewBox="0 0 12 12"><path fill="currentColor" d="M6 .5 7.1 4.9 11.5 6 7.1 7.1 6 11.5 4.9 7.1.5 6 4.9 4.9Z"/></svg><div class="cu" data-unit="s" style="left:122.75px"><div class="fr"><img src="assets/inv/frame-mini.webp" alt=""><div class="num"></div></div><div class="lab">ثانية</div></div>
+      </div>
+      <div class="el rv dv" style="left:209.67px;top:729.0px;width:286.33px;height:17.33px;--d:3"><img src="assets/inv/p8-3.webp" alt="" draggable="false"></div>
+      <div class="el rv " style="left:200.33px;top:783.0px;width:309.67px;height:59.67px;--d:4"><img src="assets/inv/p8-4.webp" alt="وبحضوركم يتم لنا الفرح والسرور" draggable="false"></div>
+    </section>
+  </div>
+
+  <button class="scroll-hint" id="hint" type="button"><span>مرّر للأسفل</span><span class="arr">↓</span></button>
+
+  <button class="audio-btn muted" id="audioBtn" type="button" aria-label="تشغيل الموسيقى">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6 6 0 0 0 2 7.5V12a2 2 0 0 0 2 2h1.2a.8.8 0 0 0 .8-.8V9.6a.8.8 0 0 0-.8-.8H3.4V7.5a4.6 4.6 0 0 1 9.2 0v1.3h-1.8a.8.8 0 0 0-.8.8v3.6c0 .44.36.8.8.8H12a2 2 0 0 0 2-2V7.5a6 6 0 0 0-6-6z"/></svg>
+  </button>
+
+  <div class="intro" id="intro">
+    <div class="dcv">
+      <div class="room"></div>
+      <div class="door dl"><div class="face"></div><div class="shade"></div><div class="edge"></div></div>
+      <div class="door dr"><div class="face"></div><div class="shade"></div><div class="edge"></div></div>
+      <div class="medal-glow"></div>
+      <div class="sheen"></div>
+      <div class="seam"></div>
+    </div>
+    <div class="open-wrap">
+      <div class="open-line"><i></i></div>
+      <button class="open-btn" id="openBtn" type="button">اضغط للفتح</button>
+    </div>
+  </div>
+</main>
+
+<audio id="music" src="assets/music.mp3" loop preload="auto"></audio>
+
+<script>
+(() => {
+  /* ---------- editable details ---------- */
+  const EVENT = {
+    start: new Date(2026, 10, 10, 19, 30, 0),          // الثلاثاء 10 نوفمبر 2026 — 7:30 م
+    mapUrl: 'https://maps.google.com/?cid=10913639334945655083'      // قصر بصمات للاحتفالات — الحزم، الرياض
+  };
+
+  const $ = s => document.querySelector(s);
+  const stage = $('#stage'), cv = $('#cv');
+  const secs = [...document.querySelectorAll('.sec')];
+  const LAST = secs.length - 1;
+  const music = $('#music'), audioBtn = $('#audioBtn');
+
+  /* ---------- canvas scale: cover the stage, exactly like the 9:16 PDF page ---------- */
+  function fit() {
+    const r = stage.getBoundingClientRect();
+    const k = Math.max(r.width / 705.75, r.height / 1254);
+    document.documentElement.style.setProperty('--k', k);
+  }
+  fit(); addEventListener('resize', fit); addEventListener('orientationchange', () => setTimeout(fit, 200));
+
+  /* ---------- audio ---------- */
+  function setAudio(on) {
+    if (on) {
+      music.volume = 0;
+      music.play().then(() => {
+        audioBtn.classList.remove('muted');
+        const t0 = performance.now();
+        const ramp = now => { const k = Math.min(1, (now - t0) / 1800); music.volume = k * k; if (k < 1 && !music.paused) requestAnimationFrame(ramp); };
+        requestAnimationFrame(ramp);
+      }).catch(() => audioBtn.classList.add('muted'));
+    }
+    else { music.pause(); audioBtn.classList.add('muted'); }
+  }
+  audioBtn.addEventListener('click', e => { e.stopPropagation(); setAudio(music.paused); });
+  // recover from a media hiccup (flaky network / decoder) while music is meant to be on
+  let wantMusic = false, retries = 0, lastT = 0;
+  music.addEventListener('play', () => { wantMusic = true; });
+  audioBtn.addEventListener('click', () => { wantMusic = !music.paused; });
+  music.addEventListener('timeupdate', () => { if (music.currentTime > 0) lastT = music.currentTime; });
+  music.addEventListener('error', () => {
+    if (!wantMusic || retries++ >= 3) return;
+    setTimeout(() => {
+      music.load();
+      music.addEventListener('loadedmetadata', () => { try { music.currentTime = lastT; } catch (_) {} }, { once: true });
+      music.play().then(() => audioBtn.classList.remove('muted')).catch(() => {});
+    }, 400);
+  });
+
+  /* ---------- intro: open the doors ---------- */
+  const intro = $('#intro');
+  let opened = false;
+  function openDoors() {
+    if (opened) return;
+    opened = true;
+    setAudio(true);
+    intro.classList.add('opening');                       // button fades, light at the seam
+    setTimeout(() => {
+      intro.classList.add('swing');                       // doors swing in, camera pushes forward
+      stage.classList.add('opening');                     // room behind settles from zoomed-in
+    }, 380);
+    setTimeout(() => { intro.classList.add('gone', 'done'); stage.classList.add('opened'); }, 2350);
+    setTimeout(() => show(0, 1), 2750);
+    setTimeout(() => intro.remove(), 3400);
+  }
+  $('#openBtn').addEventListener('click', openDoors);
+  intro.addEventListener('click', openDoors);
+
+  /* ---------- section engine ---------- */
+  let cur = -1, busy = false;
+  function show(i, dir) {
+    const el = secs[i];
+    el.classList.remove('leave-up', 'leave-down', 'in', 'from-up');
+    if (dir < 0) el.classList.add('from-up');
+    el.classList.add('active');
+    void el.offsetWidth;
+    el.classList.add('in');
+    cur = i;
+    stage.classList.toggle('show-hint', i < LAST);
+  }
+  function go(dir) {
+    const next = cur + dir;
+    if (busy || cur < 0 || next < 0 || next > LAST) return;
+    busy = true;
+    const old = secs[cur];
+    old.classList.add(dir > 0 ? 'leave-up' : 'leave-down');
+    old.classList.remove('active');
+    setTimeout(() => { old.classList.remove('leave-up', 'leave-down', 'from-up', 'in'); show(next, dir); }, 520);
+    setTimeout(() => { busy = false; }, 1250);
+  }
+
+  let acc = 0, accT;
+  addEventListener('wheel', e => {
+    e.preventDefault();
+    if (busy) { acc = 0; return; }
+    acc += e.deltaY;
+    clearTimeout(accT); accT = setTimeout(() => acc = 0, 180);
+    if (Math.abs(acc) > 35) { go(acc > 0 ? 1 : -1); acc = 0; }
+  }, { passive: false });
+
+  let ty = null, tx = 0;
+  stage.addEventListener('touchstart', e => { ty = e.touches[0].clientY; tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+  stage.addEventListener('touchend', e => {
+    if (ty === null) return;
+    const dy = ty - e.changedTouches[0].clientY, dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx)) go(dy > 0 ? 1 : -1);
+    ty = null;
+  });
+
+  addEventListener('keydown', e => {
+    if (!stage.classList.contains('opened')) { if (e.key === 'Enter' || e.key === ' ') openDoors(); return; }
+    if (['ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(1); }
+    if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(-1); }
+  });
+  $('#hint').addEventListener('click', () => go(1));
+
+  /* ---------- map / directions ---------- */
+  document.querySelectorAll('[data-map]').forEach(a => {
+    a.href = EVENT.mapUrl; a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  /* ---------- live countdown ---------- */
+  const units = {};
+  document.querySelectorAll('.cu').forEach(u => { units[u.dataset.unit] = { box: u.querySelector('.num'), v: null }; });
+  function setUnit(u, v, animate) {
+    if (u.v === v) return;
+    const old = u.box.querySelector('b:not(.out)');
+    const nb = document.createElement('b'); nb.textContent = v;
+    if (animate && old) {
+      old.classList.add('out'); setTimeout(() => old.remove(), 320);
+      nb.classList.add('in');
+    } else if (old) old.remove();
+    u.box.appendChild(nb); u.v = v;
+  }
+  let first = true;
+  function tick() {
+    let s = Math.max(0, Math.floor((EVENT.start - Date.now()) / 1000));
+    const d = Math.floor(s / 86400); s %= 86400;
+    const h = Math.floor(s / 3600); s %= 3600;
+    const m = Math.floor(s / 60); s %= 60;
+    const vals = { d: String(d).padStart(2, '0'), h: String(h).padStart(2, '0'), m: String(m).padStart(2, '0'), s: String(s).padStart(2, '0') };
+    const live = cur === LAST && !first;
+    for (const k in vals) setUnit(units[k], vals[k], live);
+    first = false;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ?s=N opens page N directly (handy for previewing)
+  const jump = new URLSearchParams(location.search).get('s');
+  if (jump !== null) { opened = true; intro.remove(); stage.classList.add('opened'); show(Math.min(LAST, Math.max(0, +jump || 0)), 1); }
+
+  if (new URLSearchParams(location.search).has('autoopen')) setTimeout(openDoors, 1000);   // preview helper
+
+  // warm up images
+  document.querySelectorAll('.el img').forEach(img => { img.loading = 'eager'; img.decoding = 'async'; });
+})();
+</script>
+</body>
+</html>
